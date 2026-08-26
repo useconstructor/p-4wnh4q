@@ -1,7 +1,512 @@
-export default function Home() {
+"use client"
+
+import { useState } from 'react'
+import Image from 'next/image'
+import { Menu, X, Diamond, Sparkles, Clock, Award, ChevronLeft, ChevronRight, Phone, Mail, MapPin, Instagram, Facebook, Star } from 'lucide-react'
+
+export default function HomePage() {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
+  const [activeCollection, setActiveCollection] = useState('eternal')
+  const [testimonialIndex, setTestimonialIndex] = useState(0)
+
+  const collections = {
+    eternal: [
+      { name: 'Anillo Eternity', description: 'Oro 18k con diamantes en talla brillante', image: '/images/feature.png' },
+      { name: 'Collar Infinito', description: 'Cadena en oro amarillo con colgante de diamante solitario', image: '/images/feature.png' },
+      { name: 'Pendientes Aurora', description: 'Oro blanco 18k con diamantes certificados GIA', image: '/images/feature.png' },
+    ],
+    heritage: [
+      { name: 'Brazalete Ancestral', description: 'Diseño artesanal inspirado en técnicas tradicionales', image: '/images/feature.png' },
+      { name: 'Broche Imperial', description: 'Pieza única con engaste de diamantes baguette', image: '/images/feature.png' },
+      { name: 'Anillo Signet', description: 'Oro rosa 18k con grabado personalizado', image: '/images/feature.png' },
+    ],
+    lumiere: [
+      { name: 'Tiara Celestial', description: 'Oro blanco con diamantes en cascada', image: '/images/feature.png' },
+      { name: 'Collar Statement', description: 'Pieza central de alta joyería con 47 diamantes', image: '/images/feature.png' },
+      { name: 'Pendientes Chandelier', description: 'Diseño escultural con movimiento fluido', image: '/images/feature.png' },
+    ],
+  }
+
+  const testimonials = [
+    { text: 'Una experiencia incomparable. Cada detalle fue cuidado con extrema delicadeza. Mi anillo de compromiso supera cualquier expectativa.', role: 'Cliente Privada, Madrid' },
+    { text: 'La artesanía de Maison Aurum representa lo mejor de la alta joyería europea. Piezas que se convierten en legado familiar.', role: 'Coleccionista, Barcelona' },
+    { text: 'El servicio personalizado y la calidad excepcional de sus creaciones hacen de cada visita un momento especial.', role: 'Cliente VIP' },
+  ]
+
+  const processSteps = [
+    { icon: Diamond, title: 'Selección de Gemas', description: 'Cada diamante es seleccionado individualmente por nuestros gemólogos certificados, garantizando pureza excepcional.' },
+    { icon: Sparkles, title: 'Diseño Artesanal', description: 'Nuestros maestros orfebres crean cada pieza a mano, respetando técnicas centenarias de alta joyería.' },
+    { icon: Clock, title: 'Tiempo y Dedicación', description: 'Cada creación requiere entre 40 y 200 horas de trabajo meticuloso para alcanzar la perfección.' },
+    { icon: Award, title: 'Certificación', description: 'Todas nuestras piezas incluyen certificación de autenticidad y documentación completa de gemas.' },
+  ]
+
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold">Constructor Template</h1>
+    <main className="min-h-screen" style={{ backgroundColor: '#0A0A0A', color: '#F5F3EF' }}>
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style={{ backgroundColor: 'rgba(10, 10, 10, 0.95)', borderBottom: '1px solid rgba(201, 169, 98, 0.2)' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between h-20">
+            <a href="#hero" className="font-serif text-2xl tracking-widest" style={{ color: '#C9A962', fontFamily: 'Cormorant Garamond, serif' }}>
+              MAISON AURUM
+            </a>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-12">
+              {['Colecciones', 'Artesanía', 'Galería', 'Testimonios', 'Contacto'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-sm tracking-wider uppercase transition-colors duration-300 hover:opacity-70"
+                  style={{ fontFamily: 'Montserrat, sans-serif', color: '#F5F3EF' }}
+                >
+                  {item}
+                </a>
+              ))}
+              <a
+                href="https://wa.me/message"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2 text-sm tracking-wider uppercase transition-all duration-300 hover:bg-opacity-90"
+                style={{ fontFamily: 'Montserrat, sans-serif', backgroundColor: '#C9A962', color: '#0A0A0A' }}
+              >
+                Reservar Cita
+              </a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileNavOpen(!mobileNavOpen)}
+              className="lg:hidden p-2"
+              aria-label="Toggle menu"
+            >
+              {mobileNavOpen ? <X size={24} style={{ color: '#C9A962' }} /> : <Menu size={24} style={{ color: '#C9A962' }} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-500 ${mobileNavOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+          style={{ backgroundColor: '#1A1715' }}
+        >
+          <div className="px-6 py-8 space-y-6">
+            {['Colecciones', 'Artesanía', 'Galería', 'Testimonios', 'Contacto'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setMobileNavOpen(false)}
+                className="block text-sm tracking-wider uppercase"
+                style={{ fontFamily: 'Montserrat, sans-serif', color: '#F5F3EF' }}
+              >
+                {item}
+              </a>
+            ))}
+            <a
+              href="https://wa.me/message"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 text-sm tracking-wider uppercase"
+              style={{ fontFamily: 'Montserrat, sans-serif', backgroundColor: '#C9A962', color: '#0A0A0A' }}
+            >
+              Reservar Cita
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero.png"
+            alt="Maison Aurum luxury jewelry"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.8))' }} />
+        </div>
+        
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <div className="mb-8 flex items-center justify-center">
+            <div className="h-px w-16" style={{ backgroundColor: '#C9A962' }} />
+            <span className="mx-4 text-xs tracking-widest uppercase" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
+              Alta Joyería Artesanal
+            </span>
+            <div className="h-px w-16" style={{ backgroundColor: '#C9A962' }} />
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-8 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            Belleza Eterna en<br />
+            <span style={{ color: '#C9A962' }}>Oro y Diamantes</span>
+          </h1>
+          
+          <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', color: '#8A8680' }}>
+            Piezas únicas elaboradas a mano con oro de 18 quilates y diamantes certificados. 
+            Cada creación es una obra de arte destinada a perdurar generaciones.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <a
+              href="#colecciones"
+              className="px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-opacity-90"
+              style={{ fontFamily: 'Montserrat, sans-serif', backgroundColor: '#C9A962', color: '#0A0A0A' }}
+            >
+              Ver Colecciones
+            </a>
+            <a
+              href="https://wa.me/message"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-white hover:bg-opacity-10"
+              style={{ fontFamily: 'Montserrat, sans-serif', border: '1px solid #C9A962', color: '#C9A962' }}
+            >
+              Agendar Consulta
+            </a>
+          </div>
+        </div>
+        
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 rounded-full border-2" style={{ borderColor: '#C9A962' }}>
+            <div className="w-1 h-3 mx-auto mt-2 rounded-full" style={{ backgroundColor: '#C9A962' }} />
+          </div>
+        </div>
+      </section>
+
+      {/* About Split Section */}
+      <section id="artesanía" className="py-24 lg:py-32" style={{ backgroundColor: '#1A1715' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <div className="relative">
+              <div className="aspect-[4/5] relative" style={{ border: '1px solid rgba(201, 169, 98, 0.3)' }}>
+                <Image
+                  src="/images/feature.png"
+                  alt="Artesanía de Maison Aurum"
+                  fill
+                  className="object-cover p-4"
+                />
+              </div>
+              <div className="absolute -bottom-8 -right-8 w-32 h-32 flex items-center justify-center" style={{ backgroundColor: '#C9A962' }}>
+                <div className="text-center" style={{ color: '#0A0A0A' }}>
+                  <span className="block text-3xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif' }}>18K</span>
+                  <span className="text-xs tracking-wider uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>Oro Puro</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="lg:pl-12">
+              <span className="text-xs tracking-widest uppercase mb-4 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
+                Nuestra Historia
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-light mb-8 leading-tight" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                La Tradición de la<br />Alta Joyería
+              </h2>
+              <div className="space-y-6 text-base leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', color: '#8A8680' }}>
+                <p>
+                  Maison Aurum nace de una pasión heredada por la excelencia artesanal. 
+                  Cada pieza que creamos representa la culminación de técnicas centenarias 
+                  perfeccionadas por generaciones de maestros orfebres.
+                </p>
+                <p>
+                  Trabajamos exclusivamente con oro de 18 quilates y diamantes certificados 
+                  por los laboratorios gemológicos más prestigiosos del mundo. Nuestro 
+                  compromiso con la calidad no admite concesiones.
+                </p>
+                <p>
+                  Para nuestra selecta clientela, ofrecemos una experiencia de consulta 
+                  privada donde cada deseo se transforma en una creación única e irrepetible.
+                </p>
+              </div>
+              <a
+                href="#contacto"
+                className="inline-block mt-10 text-sm tracking-widest uppercase transition-all duration-300 hover:opacity-70"
+                style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962', borderBottom: '1px solid #C9A962', paddingBottom: '4px' }}
+              >
+                Conocer Más
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Collections Section */}
+      <section id="colecciones" className="py-24 lg:py-32" style={{ backgroundColor: '#0A0A0A' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <span className="text-xs tracking-widest uppercase mb-4 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
+              Nuestras Creaciones
+            </span>
+            <h2 className="text-4xl lg:text-6xl font-light mb-6" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              Colecciones Exclusivas
+            </h2>
+            <p className="max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', color: '#8A8680' }}>
+              Tres universos de belleza que celebran la maestría artesanal y la pureza de los materiales más nobles.
+            </p>
+          </div>
+
+          {/* Collection Tabs */}
+          <div className="flex justify-center mb-16">
+            <div className="inline-flex" style={{ border: '1px solid rgba(201, 169, 98, 0.3)' }}>
+              {['eternal', 'heritage', 'lumiere'].map((collection) => (
+                <button
+                  key={collection}
+                  onClick={() => setActiveCollection(collection)}
+                  className="px-8 py-4 text-sm tracking-widest uppercase transition-all duration-300"
+                  style={{
+                    fontFamily: 'Montserrat, sans-serif',
+                    backgroundColor: activeCollection === collection ? '#C9A962' : 'transparent',
+                    color: activeCollection === collection ? '#0A0A0A' : '#F5F3EF',
+                  }}
+                >
+                  {collection}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Collection Grid */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {collections[activeCollection as keyof typeof collections].map((piece, index) => (
+              <div
+                key={index}
+                className="group cursor-pointer"
+              >
+                <div className="relative aspect-[3/4] mb-6 overflow-hidden" style={{ backgroundColor: '#1A1715' }}>
+                  <Image
+                    src={piece.image}
+                    alt={piece.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center" style={{ backgroundColor: 'rgba(10, 10, 10, 0.7)' }}>
+                    <span className="px-6 py-3 text-xs tracking-widest uppercase" style={{ fontFamily: 'Montserrat, sans-serif', border: '1px solid #C9A962', color: '#C9A962' }}>
+                      Consultar Precio
+                    </span>
+                  </div>
+                </div>
+                <h3 className="text-xl mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{piece.name}</h3>
+                <p className="text-sm" style={{ fontFamily: 'Montserrat, sans-serif', color: '#8A8680' }}>{piece.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-16">
+            <a
+              href="https://wa.me/message"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-opacity-90"
+              style={{ fontFamily: 'Montserrat, sans-serif', backgroundColor: '#C9A962', color: '#0A0A0A' }}
+            >
+              Solicitar Catálogo Privado
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Masonry */}
+      <section id="galería" className="py-24 lg:py-32" style={{ backgroundColor: '#1A1715' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <span className="text-xs tracking-widest uppercase mb-4 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
+              Boutique Virtual
+            </span>
+            <h2 className="text-4xl lg:text-6xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              Galería de Piezas
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="col-span-2 row-span-2 relative aspect-square">
+              <Image src="/images/feature.png" alt="Pieza destacada" fill className="object-cover" />
+            </div>
+            <div className="relative aspect-square">
+              <Image src="/images/feature.png" alt="Joya Maison Aurum" fill className="object-cover" />
+            </div>
+            <div className="relative aspect-square">
+              <Image src="/images/feature.png" alt="Joya Maison Aurum" fill className="object-cover" />
+            </div>
+            <div className="relative aspect-square">
+              <Image src="/images/feature.png" alt="Joya Maison Aurum" fill className="object-cover" />
+            </div>
+            <div className="relative aspect-square">
+              <Image src="/images/feature.png" alt="Joya Maison Aurum" fill className="object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Steps */}
+      <section className="py-24 lg:py-32" style={{ backgroundColor: '#0A0A0A' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-20">
+            <span className="text-xs tracking-widest uppercase mb-4 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
+              Nuestro Proceso
+            </span>
+            <h2 className="text-4xl lg:text-6xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              El Arte de Crear
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {processSteps.map((step, index) => (
+              <div key={index} className="text-center group">
+                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center transition-all duration-300 group-hover:scale-110" style={{ border: '1px solid #C9A962' }}>
+                  <step.icon size={32} style={{ color: '#C9A962' }} />
+                </div>
+                <div className="text-xs tracking-widest uppercase mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#8A8680' }}>
+                  0{index + 1}
+                </div>
+                <h3 className="text-xl mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{step.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', color: '#8A8680' }}>
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Carousel */}
+      <section id="testimonios" className="py-24 lg:py-32" style={{ backgroundColor: '#1A1715' }}>
+        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <span className="text-xs tracking-widest uppercase mb-4 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
+              Testimonios
+            </span>
+            <h2 className="text-4xl lg:text-6xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              Voces de Confianza
+            </h2>
+          </div>
+
+          <div className="relative">
+            <div className="text-center px-8 md:px-16">
+              <div className="flex justify-center mb-8">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={20} fill="#C9A962" style={{ color: '#C9A962' }} className="mx-1" />
+                ))}
+              </div>
+              <blockquote className="text-2xl md:text-3xl font-light italic mb-8 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                &ldquo;{testimonials[testimonialIndex].text}&rdquo;
+              </blockquote>
+              <cite className="text-sm tracking-widest uppercase not-italic" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
+                {testimonials[testimonialIndex].role}
+              </cite>
+            </div>
+
+            <div className="flex justify-center mt-12 space-x-4">
+              <button
+                onClick={() => setTestimonialIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))}
+                className="w-12 h-12 flex items-center justify-center transition-all duration-300 hover:bg-opacity-20"
+                style={{ border: '1px solid #C9A962' }}
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft size={20} style={{ color: '#C9A962' }} />
+              </button>
+              <button
+                onClick={() => setTestimonialIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))}
+                className="w-12 h-12 flex items-center justify-center transition-all duration-300 hover:bg-opacity-20"
+                style={{ border: '1px solid #C9A962' }}
+                aria-label="Next testimonial"
+              >
+                <ChevronRight size={20} style={{ color: '#C9A962' }} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Full */}
+      <section className="py-24 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/images/hero.png" alt="Background" fill className="object-cover opacity-30" />
+          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10, 10, 10, 0.85)' }} />
+        </div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-12 text-center">
+          <h2 className="text-4xl lg:text-6xl font-light mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            Su Pieza Única<br />
+            <span style={{ color: '#C9A962' }}>Le Espera</span>
+          </h2>
+          <p className="text-lg mb-12 max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', color: '#8A8680' }}>
+            Reserve una consulta privada y descubra cómo podemos crear la joya perfecta para usted. 
+            Atención exclusiva por cita previa.
+          </p>
+          <a
+            href="https://wa.me/message"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-12 py-5 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-opacity-90"
+            style={{ fontFamily: 'Montserrat, sans-serif', backgroundColor: '#C9A962', color: '#0A0A0A' }}
+          >
+            Reservar Cita por WhatsApp
+          </a>
+        </div>
+      </section>
+
+      {/* Contact Split */}
+      <section id="contacto" className="py-24 lg:py-32" style={{ backgroundColor: '#1A1715' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+            <div>
+              <span className="text-xs tracking-widest uppercase mb-4 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
+                Contacto
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-light mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                Visítenos con<br />Cita Previa
+              </h2>
+              <p className="mb-12" style={{ fontFamily: 'Montserrat, sans-serif', color: '#8A8680' }}>
+                Nuestra boutique ofrece una experiencia de consulta privada y personalizada. 
+                Cada visita es por cita previa para garantizar atención exclusiva.
+              </p>
+
+              <div className="space-y-8">
+                <div className="flex items-start space-x-4">
+                  <Phone size={24} style={{ color: '#C9A962' }} className="flex-shrink-0 mt-1" />
+                  <div>
+                    <h4 className="text-sm tracking-wider uppercase mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>WhatsApp</h4>
+                    <a href="https://wa.me/message" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity" style={{ color: '#8A8680' }}>
+                      Enviar mensaje para cita
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <Mail size={24} style={{ color: '#C9A962' }} className="flex-shrink-0 mt-1" />
+                  <div>
+                    <h4 className="text-sm tracking-wider uppercase mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Email</h4>
+                    <a href="mailto:contacto@maisonaurum.com" className="hover:opacity-70 transition-opacity" style={{ color: '#8A8680' }}>
+                      contacto@maisonaurum.com
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <MapPin size={24} style={{ color: '#C9A962' }} className="flex-shrink-0 mt-1" />
+                  <div>
+                    <h4 className="text-sm tracking-wider uppercase mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Boutique</h4>
+                    <p style={{ color: '#8A8680' }}>Ubicación disponible tras confirmar cita</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative aspect-square lg:aspect-auto" style={{ border: '1px solid rgba(201, 169, 98, 0.3)' }}>
+              <Image
+                src="/images/feature.png"
+                alt="Boutique Maison Aurum"
+                fill
+                className="object-cover p-6"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-16" style={{ backgroundColor: '#0A0A0A', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-gray-500">© 2024 All rights reserved.</p>
+        </div>
+      </footer>
     </main>
   );
 }
