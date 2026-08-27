@@ -173,6 +173,152 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Timeline Section - La Historia de Maison Aurum */}
+      <section className="py-24 lg:py-32" style={{ backgroundColor: '#F5F1E8' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <span className="text-xs tracking-widest uppercase mb-4 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#8B7355' }}>
+              Nuestra Trayectoria
+            </span>
+            <h2 className="text-4xl lg:text-6xl font-light mb-6" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#0A0A0A' }}>
+              La Historia de Maison Aurum
+            </h2>
+            <p className="max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', color: '#5A5147' }}>
+              Más de una década dedicada a la excelencia en alta joyería artesanal
+            </p>
+          </div>
+
+          {/* Timeline */}
+          <div className="relative">
+            {/* Línea central */}
+            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-px" style={{ backgroundColor: '#C9A962' }}></div>
+
+            {/* Hitos */}
+            <div className="space-y-16 lg:space-y-24">
+              {/* 2010 - Fundación */}
+              <div className="relative">
+                <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                  <div className="text-right mb-8 lg:mb-0">
+                    <div className="lg:pr-12">
+                      <h3 className="text-2xl font-light mb-2" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#0A0A0A' }}>
+                        Fundación
+                      </h3>
+                      <p className="text-sm" style={{ fontFamily: 'Montserrat, sans-serif', color: '#5A5147' }}>
+                        Nace Maison Aurum con la visión de crear joyas únicas que perduren en el tiempo, fusionando técnicas tradicionales con diseño contemporáneo.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative lg:pl-12">
+                    <div className="flex items-center lg:justify-start">
+                      <div className="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-light" style={{ backgroundColor: '#C9A962', fontFamily: 'Cormorant Garamond, serif' }}>
+                        01
+                      </div>
+                      <div className="ml-6">
+                        <span className="text-3xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#C9A962' }}>
+                          2010
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Círculo central en desktop */}
+                  <div className="hidden lg:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full" style={{ backgroundColor: '#C9A962' }}></div>
+                </div>
+              </div>
+
+              {/* 2015 - Primera Boutique */}
+              <div className="relative">
+                <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                  <div className="order-2 lg:order-1 relative lg:pr-12">
+                    <div className="flex items-center justify-end">
+                      <div className="mr-6 text-right">
+                        <span className="text-3xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#C9A962' }}>
+                          2015
+                        </span>
+                      </div>
+                      <div className="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-light" style={{ backgroundColor: '#C9A962', fontFamily: 'Cormorant Garamond, serif' }}>
+                        02
+                      </div>
+                    </div>
+                  </div>
+                  <div className="order-1 lg:order-2 mb-8 lg:mb-0">
+                    <div className="lg:pl-12">
+                      <h3 className="text-2xl font-light mb-2" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#0A0A0A' }}>
+                        Primera Boutique
+                      </h3>
+                      <p className="text-sm" style={{ fontFamily: 'Montserrat, sans-serif', color: '#5A5147' }}>
+                        Inauguramos nuestra primera boutique exclusiva, creando un espacio íntimo donde cada cliente recibe atención personalizada para crear su pieza soñada.
+                      </p>
+                    </div>
+                  </div>
+                  {/* Círculo central en desktop */}
+                  <div className="hidden lg:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full" style={{ backgroundColor: '#C9A962' }}></div>
+                </div>
+              </div>
+
+              {/* 2019 - Premio Internacional */}
+              <div className="relative">
+                <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                  <div className="text-right mb-8 lg:mb-0">
+                    <div className="lg:pr-12">
+                      <h3 className="text-2xl font-light mb-2" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#0A0A0A' }}>
+                        Premio Internacional
+                      </h3>
+                      <p className="text-sm" style={{ fontFamily: 'Montserrat, sans-serif', color: '#5A5147' }}>
+                        Reconocimiento internacional por excelencia en diseño de alta joyería, consolidando nuestra posición entre las casas más prestigiosas del sector.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative lg:pl-12">
+                    <div className="flex items-center lg:justify-start">
+                      <div className="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-light" style={{ backgroundColor: '#C9A962', fontFamily: 'Cormorant Garamond, serif' }}>
+                        03
+                      </div>
+                      <div className="ml-6">
+                        <span className="text-3xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#C9A962' }}>
+                          2019
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Círculo central en desktop */}
+                  <div className="hidden lg:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full" style={{ backgroundColor: '#C9A962' }}></div>
+                </div>
+              </div>
+
+              {/* 2024 - Expansión Online */}
+              <div className="relative">
+                <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                  <div className="order-2 lg:order-1 relative lg:pr-12">
+                    <div className="flex items-center justify-end">
+                      <div className="mr-6 text-right">
+                        <span className="text-3xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#C9A962' }}>
+                          2024
+                        </span>
+                      </div>
+                      <div className="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-light" style={{ backgroundColor: '#C9A962', fontFamily: 'Cormorant Garamond, serif' }}>
+                        04
+                      </div>
+                    </div>
+                  </div>
+                  <div className="order-1 lg:order-2 mb-8 lg:mb-0">
+                    <div className="lg:pl-12">
+                      <h3 className="text-2xl font-light mb-2" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#0A0A0A' }}>
+                        Expansión Online
+                      </h3>
+                      <p className="text-sm" style={{ fontFamily: 'Montserrat, sans-serif', color: '#5A5147' }}>
+                        Lanzamiento de nuestra plataforma digital exclusiva, llevando la experiencia Maison Aurum a clientes selectos en todo el mundo.
+                      </p>
+                    </div>
+                  </div>
+                  {/* Círculo central en desktop */}
+                  <div className="hidden lg:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full" style={{ backgroundColor: '#C9A962' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* About Split Section */}
       <section id="artesanía" className="py-24 lg:py-32" style={{ backgroundColor: '#1A1715' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
