@@ -28,9 +28,24 @@ export default function HomePage() {
   }
 
   const testimonials = [
-    { text: 'Una experiencia incomparable. Cada detalle fue cuidado con extrema delicadeza. Mi anillo de compromiso supera cualquier expectativa.', role: 'Cliente Privada, Madrid' },
-    { text: 'La artesanía de Maison Aurum representa lo mejor de la alta joyería europea. Piezas que se convierten en legado familiar.', role: 'Coleccionista, Barcelona' },
-    { text: 'El servicio personalizado y la calidad excepcional de sus creaciones hacen de cada visita un momento especial.', role: 'Cliente VIP' },
+    {
+      name: 'María Fernández',
+      role: 'Directora Ejecutiva',
+      text: 'Una experiencia incomparable. Cada detalle fue cuidado con extrema delicadeza. Mi anillo de compromiso supera cualquier expectativa.',
+      initials: 'MF'
+    },
+    {
+      name: 'Carlos Mendoza',
+      role: 'Coleccionista de Arte',
+      text: 'La artesanía de Maison Aurum representa lo mejor de la alta joyería europea. Piezas que se convierten en legado familiar.',
+      initials: 'CM'
+    },
+    {
+      name: 'Ana García',
+      role: 'Empresaria',
+      text: 'El servicio personalizado y la calidad excepcional de sus creaciones hacen de cada visita un momento especial.',
+      initials: 'AG'
+    },
   ]
 
   const processSteps = [
@@ -527,17 +542,39 @@ export default function HomePage() {
 
           <div className="relative">
             <div className="text-center px-8 md:px-16">
-              <div className="flex justify-center mb-8">
+              {/* Avatar con iniciales */}
+              <div className="flex justify-center mb-6">
+                <div
+                  className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-light"
+                  style={{
+                    backgroundColor: '#C9A962',
+                    color: '#0A0A0A',
+                    fontFamily: 'Cormorant Garamond, serif'
+                  }}
+                >
+                  {testimonials[testimonialIndex].initials}
+                </div>
+              </div>
+
+              <div className="flex justify-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={20} fill="#C9A962" style={{ color: '#C9A962' }} className="mx-1" />
                 ))}
               </div>
-              <blockquote className="text-2xl md:text-3xl font-light italic mb-8 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+
+              <blockquote className="text-2xl md:text-3xl font-light italic mb-6 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 &ldquo;{testimonials[testimonialIndex].text}&rdquo;
               </blockquote>
-              <cite className="text-sm tracking-widest uppercase not-italic" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
-                {testimonials[testimonialIndex].role}
-              </cite>
+
+              {/* Nombre y cargo */}
+              <div className="space-y-1">
+                <p className="text-lg font-light" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#F5F3EF' }}>
+                  {testimonials[testimonialIndex].name}
+                </p>
+                <p className="text-sm tracking-widest uppercase" style={{ fontFamily: 'Montserrat, sans-serif', color: '#C9A962' }}>
+                  {testimonials[testimonialIndex].role}
+                </p>
+              </div>
             </div>
 
             <div className="flex justify-center mt-12 space-x-4">
